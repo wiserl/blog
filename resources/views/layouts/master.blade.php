@@ -1,22 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>My Application</title>
-  
-
-
-</head>
-  <body>
-    <div class="container">
-
-  @yield('content')
-</div>
-
-  
-  @yield('footer')
-</body>
-</html> -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -26,52 +7,33 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Album example for Bootstrap</title>
+    <title>Blog Template for Bootstrap</title>
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="/css/app.css" rel="stylesheet">
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    
-    <!-- Custom styles for this template -->
-    <link href="css/album.css" rel="stylesheet">
   </head>
 
-  <body>
-
-    <header>
-      <div class="collapse bg-dark" id="navbarHeader">
+    <body>
+      @include('layouts.nav')
+      
+      
+      <div class="blog-header">
         <div class="container">
-          <div class="row">
-            <div class="col-sm-8 py-4">
-              <h4 class="text-white">About</h4>
-              <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-            </div>
-            <div class="col-sm-4 py-4">
-              <h4 class="text-white">Contact</h4>
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                <li><a href="#" class="text-white">Like on Facebook</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
-              </ul>
-            </div>
-          </div>
+          <h1 class="blog-title">The Bootstrap Blog</h1>
+          <p class="lead blog-description">An example blog template built with Bootstrap.</p>
         </div>
       </div>
-      @include ('layouts.nav');
-    <div class="container">
-      @yield ('content')
-</div>
-   @include ('layouts.footer')
+      
+      <div class="container">
+      <div class="row">
+       @yield ('content')
 
-    
-    <script src="../../../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../../../dist/js/bootstrap.min.js"></script>
-    <script src="../../../../assets/js/vendor/holder.min.js"></script>
-    <script>
-      Holder.addTheme('thumb', {
-        bg: '#55595c',
-        fg: '#eceeef',
-        text: 'Thumbnail'
-      });
-    </script>
-  </body>
+        @include ('layouts.sidebar')
+  </div>
+</div>
+
+@include ('layouts.footer')
+
+</body>
 </html>
