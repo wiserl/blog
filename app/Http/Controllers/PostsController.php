@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Carbon\Carbon;
 
 class PostsController extends Controller
 {
@@ -15,8 +16,19 @@ class PostsController extends Controller
 
 
 
-    public function index(){
-        $posts = Post::latest()->get();
+    public function index()
+{
+if (request(['month', 'year'])) {
+$posts = Post::latest()
+->filter(request(['month', 'year']))
+->get();
+} else {
+$posts = Post::latest()->get();
+}
+        
+
+        
+        
         $archives = Post::selectRaw('year(created_at)year, monthname(created_at)month,count(*) published')
         ->groupBy('year','month')
         ->orderByRaw('min(created_at) desc')
