@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Repositories\Posts;
 use Illuminate\Http\Request;
 use App\Post;
 use Carbon\Carbon;
@@ -16,12 +16,14 @@ class PostsController extends Controller
 
 
 
-    public function index()
+    public function index(Posts $posts)
 {
+    
 if (request(['month', 'year'])) {
-$posts = Post::latest()
-->filter(request(['month', 'year']))
-->get();
+$posts=$posts->all();
+
+// ->filter(request(['month', 'year']))
+// ->get();
 } else {
 $posts = Post::latest()->get();
 }
@@ -29,11 +31,7 @@ $posts = Post::latest()->get();
 
         
         
-        $archives = Post::selectRaw('year(created_at)year, monthname(created_at)month,count(*) published')
-        ->groupBy('year','month')
-        ->orderByRaw('min(created_at) desc')
-        ->get()
-        ->toArray();
+        // $archives = Post::archives();
 
         return view('posts.index',compact ('posts', 'archives'));
     }

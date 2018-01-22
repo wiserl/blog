@@ -3,26 +3,23 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
+use View;
+use Carbon\Carbon;
+use App\Post;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
+public function boot()
+{
+Schema::defaultStringLength(191);
+
+View::share('archives', Post::archives());
+}
+
+public function register()
+{
+//
+}
 }
