@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use View;
 use Carbon\Carbon;
 use App\Post;
+use \App\Billing\Stripe;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,9 @@ View::share('archives', Post::archives());
 
 public function register()
 {
-//
+$this->app->singleton(Stripe::class, function() {
+    return  new Stripe(config('services.stripe.secret'));
+
+});
 }
 }
