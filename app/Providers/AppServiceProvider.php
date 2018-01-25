@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use View;
 use Carbon\Carbon;
 use App\Post;
+use App\Tag;
 use \App\Billing\Stripe;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +18,7 @@ public function boot()
 Schema::defaultStringLength(191);
 
 View::share('archives', Post::archives());
+View::share('tags', Tag::has('posts')->pluck('name'));
 }
 
 public function register()

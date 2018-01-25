@@ -18,8 +18,11 @@ class PostsController extends Controller
 
     public function index(Posts $posts)
 {
-    
-if (request(['month', 'year'])) {
+
+
+
+
+  if (request(['month', 'year'])) {
 $posts=$posts->all();
 
 // ->filter(request(['month', 'year']))
@@ -66,7 +69,9 @@ new Post(request(['title', 'body']))
         );
 
        
-
+        session()->flash(
+            'message', 'Your Post has been published')
+            ;
 
 
 
