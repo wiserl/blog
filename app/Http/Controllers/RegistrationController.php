@@ -15,6 +15,10 @@ public function create () {
 
 }
 
+public function __construct(){
+    $this->middleware('guest');
+    }
+
 public function store (RegistrationForm $form) {
 
 
